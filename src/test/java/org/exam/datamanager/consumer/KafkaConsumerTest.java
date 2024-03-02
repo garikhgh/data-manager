@@ -5,7 +5,6 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.exam.datamanager.DataManagerApplication;
 import org.exam.datamanager.config.KafkaConsumerConfig;
 import org.exam.datamanager.config.KafkaTopicConfig;
-import org.exam.datamanager.domain.NotificationDto;
 import org.exam.datamanager.domain.NotificationEntity;
 import org.exam.datamanager.repository.NotificationRepository;
 import org.junit.ClassRule;
