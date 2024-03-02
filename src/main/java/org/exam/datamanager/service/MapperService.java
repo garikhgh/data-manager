@@ -11,10 +11,12 @@ import org.mapstruct.ReportingPolicy;
 public interface MapperService {
 
 
-    NotificationDto toNotificationDto(NotificationEntity notification);
+
 
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     NotificationEntity toNotificationEntity(NotificationDto notificationDto);
+
+    NotificationDto toNotificationDto(NotificationEntity notification);
 }

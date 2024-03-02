@@ -58,16 +58,13 @@ class KafkaConsumerTest {
     @Test
     void testKafkaConsumer() throws InterruptedException {
 
-        NotificationDto n = notificationDto();
+        String n = "{\"description\":\"test notification\"}";
+        sleep(1000);
         kafkaTemplate.send(NOTIFICATION_TOPIC, n);
-
         sleep(4000);
         List<NotificationEntity> all = notificationRepository.findAll();
-        assertEquals("test notification", all.get(0).getDescription());
-    }
 
-    private NotificationDto notificationDto() {
-        return new NotificationDto("test notification");
+        assertEquals("test notification", all.get(0).getDescription());
     }
 
     @TestConfiguration

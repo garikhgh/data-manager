@@ -25,3 +25,5 @@ r
 Bsrc/test/java/org/exam/datamanager/consumer/KafkaConsumerTest.java,2/f/2faec840fc44f4f40eee695b416d0171a44dd0e1
 n
 >src/main/java/org/exam/datamanager/DataManagerApplication.java,4/3/43849c999ca9bc991f3c6498d039d55c748482b1
+h
+8src/main/java/org/exam/datamanager/config/AppConfig.java,a/8/a895a227982cdfa4e4f717e26a075c33af4b372d
