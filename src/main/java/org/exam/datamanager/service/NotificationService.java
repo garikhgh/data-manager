@@ -1,6 +1,5 @@
 package org.exam.datamanager.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +19,8 @@ public class NotificationService {
     private final MapperService mapperService;
     private final ObjectMapper objectMapper;
 
-    public void storeNotification(JsonNode jsonNode) throws IOException {
-        NotificationDto notificationDto = objectMapper.readerFor(NotificationDto.class).readValue(jsonNode);
+    public void storeNotification(String jsonNode) throws IOException {
+        NotificationDto notificationDto = objectMapper.readValue(jsonNode, NotificationDto.class);
         NotificationEntity notificationEntity = mapperService.toNotificationEntity(notificationDto);
         NotificationEntity save = notificationRepository.save(notificationEntity);
         log.info("New Notification is saved: {}", save);
