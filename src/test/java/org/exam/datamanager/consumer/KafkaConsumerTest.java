@@ -59,6 +59,7 @@ class KafkaConsumerTest {
     void testKafkaConsumer() throws InterruptedException {
 
         NotificationDto n = notificationDto();
+        sleep(1000);
         kafkaTemplate.send(NOTIFICATION_TOPIC, n);
 
         sleep(4000);
