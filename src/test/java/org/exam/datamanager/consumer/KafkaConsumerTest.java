@@ -1,10 +1,11 @@
 package org.exam.datamanager.consumer;
 
+import org.apache.kafka.clients.admin.AdminClientConfig;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.exam.datamanager.DataManagerApplication;
 import org.exam.datamanager.config.KafkaConsumerConfig;
-import org.exam.datamanager.config.KafkaTopicConfig;
 import org.exam.datamanager.domain.NotificationEntity;
 import org.exam.datamanager.repository.NotificationRepository;
 import org.junit.ClassRule;
@@ -17,6 +18,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
+import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
@@ -34,7 +36,7 @@ import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
-@Import({KafkaConsumerConfig.class, KafkaConsumerTest.KafkaProducerConfig.class, KafkaTopicConfig.class})
+@Import({KafkaConsumerConfig.class, KafkaConsumerTest.KafkaProducerConfig.class})
 @DirtiesContext
 @SpringBootTest(classes = DataManagerApplication.class)
 class KafkaConsumerTest {
@@ -84,6 +86,18 @@ class KafkaConsumerTest {
         @Bean
         KafkaTemplate<String, Serializable> jsonKafkaTemplate(ProducerFactory<String, Serializable> jsonProducerFactory) {
             return new KafkaTemplate<>(jsonProducerFactory);
+        }
+
+        @Bean
+        public KafkaAdmin kafkaAdmin() {
+            Map<String, Object> configs = new HashMap<>();
+            configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+            return new KafkaAdmin(configs);
+        }
+
+        @Bean
+        public NewTopic productTopic() {
+            return new NewTopic("notification", 1, (short) 1);
         }
     }
 
