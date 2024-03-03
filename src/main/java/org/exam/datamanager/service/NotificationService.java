@@ -19,8 +19,8 @@ public class NotificationService {
     private final MapperService mapperService;
     private final ObjectMapper objectMapper;
 
-    public void storeNotification(String jsonNode) throws IOException {
-        NotificationDto notificationDto = objectMapper.readValue(jsonNode, NotificationDto.class);
+    public void storeNotification(String notificationJson) throws IOException {
+        NotificationDto notificationDto = objectMapper.readValue(notificationJson, NotificationDto.class);
         NotificationEntity notificationEntity = mapperService.toNotificationEntity(notificationDto);
         NotificationEntity save = notificationRepository.save(notificationEntity);
         log.info("New Notification is saved: {}", save);

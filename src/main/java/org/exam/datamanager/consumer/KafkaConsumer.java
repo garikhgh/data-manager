@@ -16,8 +16,8 @@ public class KafkaConsumer {
     private final NotificationService notificationService;
 
     @KafkaListener(topics = "notification", containerFactory = "kafkaListenerContainerFactory")
-    public void notificationListener(String notificationDto) throws IOException {
-        log.info("New Notification received {}", notificationDto);
-        notificationService.storeNotification(notificationDto);
+    public void notificationListener(String notificationJson) throws IOException {
+        log.info("New Notification received {}", notificationJson);
+        notificationService.storeNotification(notificationJson);
     }
 }
