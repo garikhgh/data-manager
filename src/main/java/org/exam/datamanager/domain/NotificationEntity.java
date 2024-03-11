@@ -1,5 +1,6 @@
 package org.exam.datamanager.domain;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,5 +26,8 @@ public class NotificationEntity implements Serializable {
     private String description;
     @CreationTimestamp
     private Instant createdAt;
+
+    @ElementCollection
+    private List<String> stringList;
 
 }
