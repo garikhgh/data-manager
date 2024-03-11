@@ -4,7 +4,6 @@ package org.exam.datamanager.domain;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
@@ -14,7 +13,5 @@ import java.util.List;
 public class NotificationDto implements Serializable {
 
     private String description;
-
-    private List<String> stringList;
 
 }
